@@ -16,4 +16,17 @@ class OrderModel extends Model
       'computer_id',
       'menu_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function computer()
+    {
+        return $this->belongsTo(ComputerModel::class, 'computer_id');
+    }
+    public function menu()
+    {
+        return $this->belongsTo(MenuModel::class, 'menu_id');
+    }
 }

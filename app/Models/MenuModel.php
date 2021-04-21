@@ -16,4 +16,9 @@ class MenuModel extends Model
       'type',
       'price'
     ];
+
+    public function order()
+    {
+        return $this->hasMany(OrderModel::class,'menu_id');
+    }
 }

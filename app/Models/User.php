@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(ComputerModel::class, 'user_id');
     }
+    public function order()
+    {
+        return $this->hasMany(OrderModel::class,'user_id');
+    }
 }

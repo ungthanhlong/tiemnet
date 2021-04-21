@@ -25,9 +25,18 @@ function Sidebar() {
                     <span>Quản lý máy tính</span></Link>
             </li>
             <hr className="sidebar-divider" />
-            <li className="nav-item">
-                <Link className="nav-btn nav-link" to="/system"><i className="fas fa-home"></i>
-                    <span>Thống kê</span></Link>
+            <li className={isOpen ? 'nav-item hover' : 'nav-item'}>
+                <Accordion.Toggle className="nav-btn nav-link collapsed" variant="link" eventKey={isOpen ? '' : '1'}>
+                    <i className="fas fa-home"></i>
+                    <span>Thống kê</span>
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="1">
+                    <div className="bg-white py-2 collapse-inner rounded">
+                        <Link to='/system/order-statistics' className="collapse-item" >Thống kê bán hàng</Link>
+                        <Link to='/co-cau-to-chuc' className="collapse-item" >Thống kê giờ chơi</Link>
+                        <Link to='/' className="collapse-item" >Thống kê tổng</Link>
+                    </div>
+                </Accordion.Collapse>
             </li>
             <hr className="sidebar-divider" />
             <li className="nav-item">

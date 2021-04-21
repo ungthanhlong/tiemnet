@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient"
 import baseUrl from "./baseUrl"
-const Url = baseUrl + "/notice"
+
 
 
 const computerAPI = {

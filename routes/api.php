@@ -12,6 +12,7 @@ use App\Http\Controllers\API\OfficersController;
 use App\Http\Controllers\API\ProfessionController;
 use App\Http\Controllers\API\SemesterController;
 use App\Http\Controllers\API\SheetController;
+use App\Http\Controllers\API\StatisticsController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\SystemClassController;
 use App\Http\Controllers\API\SystemProfessionController;
@@ -42,7 +43,9 @@ use Illuminate\Support\Facades\Route;
     Route::middleware('auth:sanctum')->get('/listMenu', [MenuController::class, 'list']);
     Route::middleware('auth:sanctum')->post('/order', [MenuController::class, 'order']);
 
-
+    Route::middleware('auth:sanctum')->prefix('/statistics')->group(function () {
+        Route::get('/listOrder', [StatisticsController::class, 'listOrder']);
+    });
 
 
     Route::get('/test', [UserController::class, 'test']);
@@ -53,16 +56,6 @@ use Illuminate\Support\Facades\Route;
     Route::get('/customer-list-computer', [ComputerController::class, 'list']);
     Route::get('/accessComputer/{id}', [ComputerController::class, 'accessComputer']);
 
-
-
-Route::middleware('auth:sanctum')->prefix('/tat-ca-mon-hoc')->group(function () {
-    Route::get('/', [AllSubjectController::class, 'list']);
-    Route::post('/search', [AllSubjectController::class, 'search']);
-    Route::post('/create', [AllSubjectController::class, 'create']);
-    Route::get('/mon-hoc-theo-nganh/{id}', [AllSubjectController::class, 'listOfProfession']);
-
-    Route::post('/delete', [AllSubjectController::class, 'delete']);
-});
 
 
 
