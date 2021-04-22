@@ -40,21 +40,18 @@ use Illuminate\Support\Facades\Route;
     Route::post('/loginCustomer', [UserController::class, 'loginCustomer']);
     Route::post('/loginSystem', [UserController::class, 'loginSystem']);
     Route::middleware('auth:sanctum')->get('/logoutCustomer', [UserController::class, 'logoutCustomer']);
+    Route::middleware('auth:sanctum')->get('/logout', [UserController::class, 'logout']);
     Route::middleware('auth:sanctum')->get('/listMenu', [MenuController::class, 'list']);
     Route::middleware('auth:sanctum')->post('/order', [MenuController::class, 'order']);
-
+    Route::middleware('auth:sanctum')->get('/getUser', [UserController::class, 'getUser']);
+    Route::get('/customer-list-computer', [ComputerController::class, 'list']);
+    Route::get('/accessComputer/{id}', [ComputerController::class, 'accessComputer']);
     Route::middleware('auth:sanctum')->prefix('/statistics')->group(function () {
         Route::get('/listOrder', [StatisticsController::class, 'listOrder']);
     });
 
 
-    Route::get('/test', [UserController::class, 'test']);
 
-    Route::middleware('auth:sanctum')->get('/logout', [UserController::class, 'logout']);
-    Route::middleware('auth:sanctum')->get('/getUser', [UserController::class, 'getUser']);
-
-    Route::get('/customer-list-computer', [ComputerController::class, 'list']);
-    Route::get('/accessComputer/{id}', [ComputerController::class, 'accessComputer']);
 
 
 

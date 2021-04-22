@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 
 
-function Sidebar() {
+function Sidebar(props) {
 
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
@@ -33,15 +33,15 @@ function Sidebar() {
                 <Accordion.Collapse eventKey="1">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <Link to='/system/order-statistics' className="collapse-item" >Thống kê bán hàng</Link>
-                        <Link to='/co-cau-to-chuc' className="collapse-item" >Thống kê giờ chơi</Link>
-                        <Link to='/' className="collapse-item" >Thống kê tổng</Link>
+                        <Link to='/system' className="collapse-item" >Thống kê giờ chơi</Link>
+                        <Link to='/system' className="collapse-item" >Thống kê tổng</Link>
                     </div>
                 </Accordion.Collapse>
             </li>
             <hr className="sidebar-divider" />
             <li className="nav-item">
-                <Link className="nav-btn nav-link" to="/system"><i className="fas fa-home"></i>
-                    <span>Lịch sử</span></Link>
+                <a className="nav-btn nav-link" to="/system" onClick={props.logout()}><i className="fas fa-home"></i>
+                    <span>Đăng xuất</span></a>
             </li>
             <div className="text-center d-none d-md-inline" id="buttonsidebar">
                 <button onClick={() => toggle()} className="rounded-circle border-0" id="sidebarToggle"></button>

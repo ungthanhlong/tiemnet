@@ -9,11 +9,68 @@ import System from './System/index';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import store from './store';
 import Login from './Login/index';
+import loginAPI from '../api/login';
+import { addComputer, addData, addType } from '../actions/token';
 export default function App() {
+  const token = useSelector(state => state.token.token)
+  const dispatch = useDispatch();
 
+
+  const fetchUser = async () => {
+
+    if (token == null) {
+      localStorage.clear();
+    }
+    else {
+      const res = await loginAPI.getUser()
+      if (res.success) {
+
+        localStorage.setItem("auth_token", true);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("type", res.type);
+        const getType = res.type;
+        const getData = res.data
+        const action2 = addData(getData);
+        const action3 = addType(getType);
+        dispatch(action2);
+        dispatch(action3);
+
+        if (res.data.type == 'customer') {
+          localStorage.setItem("computer", res.computer);
+          const getComputer = res.computer;
+          const action4 = addComputer(getComputer);
+          dispatch(action4);
+        }
+
+      }
+      else {
+        localStorage.clear();
+      }
+    }
+
+
+
+  }
+
+  useEffect(() => {
+
+    fetchUser()
+  }, []);
 
 
   return (
+
+
+
+
+
+
+
+
+
+
+
+
 
     <Router>
       <Switch>
